@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: blood-sample-management-api
+  datasource:
+    username: root
+    password: code
+    url: jdbc:mysql://localhost:3306/EmployeeManagementDB?createDatabaseIfNotExist=true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
