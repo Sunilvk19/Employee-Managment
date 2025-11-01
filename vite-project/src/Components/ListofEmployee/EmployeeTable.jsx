@@ -3,10 +3,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Employee.css';
 
-const EmployeeTable = () => {
+const EmployeeTable = ({ onEdit, onAddNew }) => {
     const [employee, setEmployee] = useState([]);
     const [message, setMessage] = useState('');
-    const navigate = useNavigate();
+    
 
     useEffect(()=>{
         fetchEmployee();
@@ -24,7 +24,7 @@ const EmployeeTable = () => {
     };
     const handleDelete = async (employeeId) =>{
         try{
-            const response = await axios.delete(`http://localhost:8080/employees?{employeeId}`);
+            const response = await axios.delete(`http://localhost:8080/employees?employeeId=${employeeId}`);
             if(response.status === 200 || response.status === 202){
                 setMessage(`Employee deleted successfully.`);
                 setEmployee(employee.filter(emp => emp.employeeId !== employeeId));
@@ -35,11 +35,12 @@ const EmployeeTable = () => {
         }
     };
     const handleEdit = (employee)=> {
-        navigate('/', { state: { employee }});
+       onEdit(employee);
     };
   return (
     <div className='table-container'>
       <h1>Employee List</h1>
+      <button onClick={onAddNew}>Add New Employee</button>
       {message && <p className='message'>{message}</p>}
       {employee.length > 0 ? (
         <table>
@@ -62,7 +63,7 @@ const EmployeeTable = () => {
                         <td>{emp.employeePhoneNo}</td>
                         <td>{emp.employeeDepartment}</td>
                         <td>
-                            <button onClick={() => handleEdit(emp.employeeId)}>Edit</button>{}
+                            <button onClick={() => handleEdit(emp)}>Edit</button>{}
                             <button onClick={() => handleDelete(emp.employeeId)}>Delete</button>
                         </td>
                     </tr>
