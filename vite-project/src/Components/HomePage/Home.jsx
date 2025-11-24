@@ -51,7 +51,7 @@ const Home = ({ onSuccess, editEmployee }) => {
         }
       }
     } catch (error) {
-      console.error('Error submitting employee:', error);
+      // console.error('Error submitting employee:', error);
       setMessage('Failed to submit employee. Please check if the server is running.');
     }
   };

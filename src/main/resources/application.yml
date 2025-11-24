@@ -1,6 +1,6 @@
 spring:
   application:
-    name: blood-sample-management-api
+    name: employee-management
   datasource:
     username: root
     password: code

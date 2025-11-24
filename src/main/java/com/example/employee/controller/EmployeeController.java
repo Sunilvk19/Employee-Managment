@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @CrossOrigin(origins = "http://localhost:5173/")
 @AllArgsConstructor
 @RestController
@@ -38,8 +37,8 @@ public class EmployeeController {
         Employee emp = employeeService.updateEmployee(employee, employeeId);
         return responseBuilder.success(HttpStatus.OK,"Employee is Updated successfully",emp);
     }
-
-    @PatchMapping("/employees{employeeId}")
+    
+    @DeleteMapping("employees{employeeId}")
     public ResponseEntity<ResponseStructure<Employee>> deleteEmployee(@PathVariable Integer employeeId){
         Employee emp = employeeService.deleteEmployee(employeeId);
         return responseBuilder.success(HttpStatus.OK,"Employee details Deleted Successfully",emp);
